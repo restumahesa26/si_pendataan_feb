@@ -10,7 +10,7 @@ class Yudisium extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'nama', 'npm', 'prodi', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'no_hp', 'nama_ayah', 'nama_ibu', 'masa_studi', 'umur', 'pas_photo'
+        'user_id', 'nama', 'npm', 'prodi', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'no_hp', 'nama_ayah', 'nama_ibu', 'masa_studi', 'umur', 'pas_photo', 'ipk'
     ];
 
     public function user()

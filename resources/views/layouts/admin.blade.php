@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <link href="{{ url('logo-unib.png') }}" rel="icon">
+  <title>SI Pendataan FEB</title>
 
   @include('includes.style')
 
@@ -35,13 +35,13 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                  <h5 class="modal-title" id="exampleModalLabelLogout">Logout</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Are you sure you want to logout?</p>
+                  <p>Yakin ingin keluar dari sistem?</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
@@ -81,5 +81,7 @@
   @include('includes.script')
 
 </body>
+
+@stack('addon-script')
 
 </html>

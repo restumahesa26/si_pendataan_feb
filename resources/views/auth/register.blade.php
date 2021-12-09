@@ -47,7 +47,7 @@
 
             <div class="d-flex justify-content-end mt-4">
                 <a class="text-muted" href="{{ route('login') }}" style="margin-right: 15px; margin-top: 15px;">
-                    {{ __('Already registered?') }}
+                    {{ __('Sudah mendaftar?') }}
                 </a>
 
                 <x-button class="ml-4">

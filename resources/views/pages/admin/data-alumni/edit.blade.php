@@ -5,13 +5,13 @@
     <h1 class="h3 mb-0 text-gray-800">Data Alumni</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="./">Data Alumni</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('data-alumni.index') }}">Data Alumni</a></li>
         <li class="breadcrumb-item active" aria-current="page">Tambah Data</li>
     </ol>
 </div>
 <div class="card mb-5">
     <div class="card-body">
-        <form action="{{ route('data-alumni.update', $item->id) }}" method="POST">
+        <form action="{{ route('data-alumni.update', $item->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -91,18 +91,18 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="tanggal_lulus">Tanggal Lulus</label>
-                <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" id="tanggal_lulus" name="tanggal_lulus" placeholder="Masukkan Tanggal Lulus" value="{{ $item->tanggal_lulus }}">
-                @error('tanggal_lulus')
+                <label for="tanggal_masuk">Tanggal Masuk</label>
+                <input type="date" class="form-control @error('tanggal_masuk') is-invalid @enderror" id="tanggal_masuk" name="tanggal_masuk" placeholder="Masukkan Tanggal Masuk" value="{{ $item->tanggal_masuk }}">
+                @error('tanggal_masuk')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="lama_studi">Lama Studi</label>
-                <input type="number" class="form-control @error('lama_studi') is-invalid @enderror" id="lama_studi" name="lama_studi" placeholder="Masukkan Lama Studi" value="{{ $item->lama_studi }}">
-                @error('lama_studi')
+                <label for="tanggal_lulus">Tanggal Lulus</label>
+                <input type="date" class="form-control @error('tanggal_lulus') is-invalid @enderror" id="tanggal_lulus" name="tanggal_lulus" placeholder="Masukkan Tanggal Lulus" value="{{ $item->tanggal_lulus }}">
+                @error('tanggal_lulus')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -118,27 +118,89 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="status_bekerja">Status Bekerja</label>
-                <input type="text" class="form-control @error('status_bekerja') is-invalid @enderror" id="status_bekerja" name="status_bekerja" placeholder="Masukkan Status Bekerja" value="{{ $item->status_bekerja }}">
-                @error('status_bekerja')
+                <label for="pekerjaan">Status Bekerja</label>
+                <select name="pekerjaan" id="pekerjaan" class="form-control">
+                    <option hidden>-- Pilih Status Pekerjaan</option>
+                    <option value="Belum Bekerja" @if ($item->pekerjaan == 'Belum Bekerja')
+                        selected
+                    @endif>Belum Bekerja</option>
+                    <option value="Pegawai Negeri Sipil" @if ($item->pekerjaan == 'Pegawai Negeri Sipil')
+                        selected
+                    @endif>Pegawai Negeri Sipil</option>
+                    <option value="Wiraswasta" @if ($item->pekerjaan == 'Wiraswasta')
+                        selected
+                    @endif>Wiraswasta</option>
+                    <option value="Karyawan Swasta" @if ($item->pekerjaan == 'Karyawan Swasta')
+                        selected
+                    @endif>Karyawan Swasta</option>
+                    <option value="Dan lainnya" @if ($item->pekerjaan == 'Dan lainnya')
+                        selected
+                    @endif>Dan lainnya</option>
+                </select>
+                @error('pekerjaan')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="tempat_bekerja">Tempat Bekerja</label>
-                <input type="text" class="form-control @error('tempat_bekerja') is-invalid @enderror" id="tempat_bekerja" name="tempat_bekerja" placeholder="Masukkan Tempat Bekerja" value="{{ $item->tempat_bekerja }}">
-                @error('tempat_bekerja')
+                <label for="tempat_pekerjaan">Pekerjaan</label>
+                <input type="text" class="form-control @error('tempat_pekerjaan') is-invalid @enderror" id="tempat_pekerjaan" name="tempat_pekerjaan" placeholder="Masukkan Pekerjaan" value="{{ $item->tempat_pekerjaan }}">
+                @error('tempat_pekerjaan')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
-                <input type="text" class="form-control @error('pendidikan_terakhir') is-invalid @enderror" id="pendidikan_terakhir" name="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir" value="{{ $item->pendidikan_terakhir }}">
-                @error('pendidikan_terakhir')
+                <label for="riwayat_pendidikan_sd">Riwayat Pendidikan SD</label>
+                <input type="text" class="form-control @error('riwayat_pendidikan_sd') is-invalid @enderror" id="riwayat_pendidikan_sd" name="riwayat_pendidikan_sd" placeholder="Masukkan Riwayat Pendidikan SD" value="{{ $item->riwayat_pendidikan_sd }}">
+                @error('riwayat_pendidikan_sd')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="file_riwayat_pendidikan_sd">File Riwayat Pendidikan SD</label>
+                <input type="file" class="form-control @error('file_riwayat_pendidikan_sd') is-invalid @enderror" id="file_riwayat_pendidikan_sd" name="file_riwayat_pendidikan_sd" placeholder="Masukkan File Riwayat Pendidikan SD" value="{{ $item->file_riwayat_pendidikan_sd }}">
+                @error('file_riwayat_pendidikan_sd')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="riwayat_pendidikan_smp">Riwayat Pendidikan SMP</label>
+                <input type="text" class="form-control @error('riwayat_pendidikan_smp') is-invalid @enderror" id="riwayat_pendidikan_smp" name="riwayat_pendidikan_smp" placeholder="Masukkan Riwayat Pendidikan SMP" value="{{ $item->riwayat_pendidikan_smp }}">
+                @error('riwayat_pendidikan_smp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="file_riwayat_pendidikan_smp">File Riwayat Pendidikan SMP</label>
+                <input type="file" class="form-control @error('file_riwayat_pendidikan_smp') is-invalid @enderror" id="file_riwayat_pendidikan_smp" name="file_riwayat_pendidikan_smp" placeholder="Masukkan File Riwayat Pendidikan SMP" value="{{ $item->file_riwayat_pendidikan_smp }}">
+                @error('file_riwayat_pendidikan_smp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="riwayat_pendidikan_sma">Riwayat Pendidikan SMA</label>
+                <input type="text" class="form-control @error('riwayat_pendidikan_sma') is-invalid @enderror" id="riwayat_pendidikan_sma" name="riwayat_pendidikan_sma" placeholder="Masukkan Riwayat Pendidikan SMA" value="{{ $item->riwayat_pendidikan_sma }}">
+                @error('riwayat_pendidikan_sma')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="file_riwayat_pendidikan_sma">File Riwayat Pendidikan SMA</label>
+                <input type="file" class="form-control @error('file_riwayat_pendidikan_sma') is-invalid @enderror" id="file_riwayat_pendidikan_sma" name="file_riwayat_pendidikan_sma" placeholder="Masukkan File Riwayat Pendidikan SMA" value="{{ $item->file_riwayat_pendidikan_sma }}">
+                @error('file_riwayat_pendidikan_sma')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -147,6 +209,83 @@
             <hr>
             <button type="submit" class="btn btn-primary btn-block my-3">Simpan</button>
         </form>
+    </div>
+</div>
+
+<div class="card mb-5">
+    <div class="card-body d-flex justify-content-center">
+        <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#ijazahSD">
+            File Ijazah SD
+        </button>
+
+        <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#ijazahSMP">
+            File Ijazah SMP
+        </button>
+
+        <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#ijazahSMA">
+            File Ijazah SMA
+        </button>
+    </div>
+
+    <div class="modal fade" id="ijazahSD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ijazah SD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    @if ($item->file_riwayat_pendidikan_sd)
+                    <img src="{{ asset('storage/assets/file-riwayat-pendidikan-sd/' . $item->file_riwayat_pendidikan_sd) }}" alt="" srcset=""  width="700">
+                    @else
+                    <p>Belum ada file</p>
+                    @endif
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ijazahSMP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ijazah SMP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    @if ($item->file_riwayat_pendidikan_smp)
+                    <img src="{{ asset('storage/assets/file-riwayat-pendidikan-smp/' . $item->file_riwayat_pendidikan_smp) }}" alt="" srcset="" width="700">
+                    @else
+                    <p>Belum ada file</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ijazahSMA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ijazah SMA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    @if ($item->file_riwayat_pendidikan_sma)
+                    <img src="{{ asset('storage/assets/file-riwayat-pendidikan-sma/' . $item->file_riwayat_pendidikan_sma) }}" alt="" srcset="" width="700">
+                    @else
+                    <p>Belum ada file</p>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

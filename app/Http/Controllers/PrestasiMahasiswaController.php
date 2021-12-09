@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kejuaraan;
+use App\Models\Organisasi;
+use App\Models\Pelatihan;
 use App\Models\PrestasiMahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +19,12 @@ class PrestasiMahasiswaController extends Controller
      */
     public function index()
     {
-        $prestasi = PrestasiMahasiswa::where('user_id', Auth::user()->id)->get();
+        $pelatihan = Pelatihan::where('user_id', Auth::user()->id)->get();
+        $kejuaraan = Kejuaraan::where('user_id', Auth::user()->id)->get();
+        $organisasi = Organisasi::where('user_id', Auth::user()->id)->get();
 
         return view('pages.mahasiswa.prestasi.index', [
-            'items' => $prestasi
+            'items' => $pelatihan, 'items2' => $kejuaraan, 'items3' => $organisasi
         ]);
     }
 

@@ -28,6 +28,7 @@ class CreateYudisiaTable extends Migration
             $table->string('masa_studi');
             $table->string('umur');
             $table->string('pas_photo');
+            $table->float('ipk', 3,2);
             $table->timestamps();
         });
     }

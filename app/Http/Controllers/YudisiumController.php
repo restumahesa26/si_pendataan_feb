@@ -53,6 +53,7 @@ class YudisiumController extends Controller
             'nama_ibu' => 'required|string|max:255',
             'masa_studi' => 'required|string|max:255',
             'umur' => 'required|string|max:255',
+            'ipk' => 'required',
             'pas_photo' => 'required|image|mimes:jpeg,png,jpg|max:1024',
         ]);
 
@@ -74,6 +75,7 @@ class YudisiumController extends Controller
             'nama_ibu' => $request->nama_ibu,
             'masa_studi' => $request->masa_studi,
             'umur' => $request->umur,
+            'ipk' => $request->ipk,
             'pas_photo' => $imageNames,
         ]);
 

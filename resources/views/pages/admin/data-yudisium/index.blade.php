@@ -10,7 +10,7 @@
 </div>
 <div class="card mb-5">
     <div class="card-body">
-        <h3 class="text-center">Mahasiswa</h3>
+        <h3 class="text-center text-danger">Belum Diverifikasi</h3>
         <hr>
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered">
@@ -33,11 +33,11 @@
                             <td>{{ $item->prodi }}</td>
                             <td>{{ $item->masa_studi }}</td>
                             <td>
-                                <a href="{{ route('data-yudisium.to-alumni', $item->id) }}" class="btn btn-sm btn-primary">Verifikasi Sebagai Alumni</a>
-                                <form action="" class="d-inline" method="POST">
+                                <a href="{{ route('data-yudisium.to-alumni', $item->id) }}" class="btn btn-sm btn-primary btn-verifikasi">Verifikasi Sebagai Alumni</a>
+                                <form action="{{ route('data-yudisium.destroy', $item->id) }}" class="d-inline" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger btn-hapus">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -53,8 +53,10 @@
 </div>
 <div class="card mb-5">
     <div class="card-body">
-        <h3 class="text-center">Alumni</h3>
+        <h3 class="text-center text-primary">Sudah Diverifikasi</h3>
         <hr>
+        <a href="{{ route('data-yudisium.cetak-excel') }}" class="btn btn-primary my-3">Cetak Data Yudisium</a>
+        <a href="{{ route('data-yudisium.hapus-semua-data') }}" class="btn btn-danger my-3 btn-hapus-semua-data">Hapus Semua Data</a>
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered">
                 <thead>
@@ -76,11 +78,10 @@
                             <td>{{ $item->prodi }}</td>
                             <td>{{ $item->masa_studi }}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-info">Cetak</a>
-                                <form action="" class="d-inline" method="POST">
+                                <form action="{{ route('data-yudisium.destroy', $item->id) }}" class="d-inline" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger btn-hapus-2">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -95,3 +96,105 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    @if ($message = Session::get('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
+
+    <script>
+        $('.btn-hapus').on('click', function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form;
+            Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            text: "Data Akan Terhapus Permanen",
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }else {
+                    //
+                }
+            });
+        });
+
+        $('.btn-hapus-2').on('click', function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form;
+            Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            text: "Data Akan Terhapus Permanen",
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }else {
+                    //
+                }
+            });
+        });
+
+        $('.btn-hapus-semua-data').on('click', function (event) {
+            event.preventDefault(); // prevent form submit
+            var form = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin Menghapus Semua Data?',
+                text: "Data Akan Terhapus Permanen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Konfirmasi',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = form;
+                }else {
+                    //
+                }
+            });
+        });
+
+        $('.btn-verifikasi').on('click', function (event) {
+            event.preventDefault(); // prevent form submit
+            var form = $(this).attr('href');
+            Swal.fire({
+                title: 'Yakin Memindah Data Sebagai Alumni?',
+                text: "Data Akan Tersimpan",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Konfirmasi',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = form;
+                }else {
+                    //
+                }
+            });
+        });
+    </script>
+@endpush

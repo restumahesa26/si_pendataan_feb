@@ -19,10 +19,25 @@
           <span>Profile</span></a>
     </li>
     @if (Auth::user()->role === 'MAHASISWA' || Auth::user()->role === 'ALUMNI')
-    <li class="nav-item @if(Route::is('prestasi-mahasiswa.*')) active @endif">
-        <a class="nav-link" href="{{ route('prestasi-mahasiswa.index') }}">
-          <i class="fas fa-book"></i>
-          <span>Data Prestasi</span></a>
+    <li class="nav-item @if(Route::is('pelatihan.*')) active @endif">
+        <a class="nav-link" href="{{ route('pelatihan.index') }}">
+            <i class="fas fa-child"></i>
+            <span>Pelatihan</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('kejuaraan.*')) active @endif">
+        <a class="nav-link" href="{{ route('kejuaraan.index') }}">
+            <i class="fas fa-running"></i>
+            <span>Kejuaraan</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('organisasi.*')) active @endif">
+        <a class="nav-link" href="{{ route('organisasi.index') }}">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>Organisasi</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('berita-mahasiswa')) active @endif">
+        <a class="nav-link" href="{{ route('berita-mahasiswa') }}">
+            <i class="fas fa-newspaper"></i>
+            <span>Berita</span></a>
     </li>
     @endif
     @if (Auth::user()->role === 'MAHASISWA')
@@ -35,18 +50,38 @@
     @if (Auth::user()->role === 'ADMIN')
     <li class="nav-item @if(Route::is('data-mahasiswa.*')) active @endif">
         <a class="nav-link" href="{{ route('data-mahasiswa.index') }}">
-          <i class="fas fa-database"></i>
+          <i class="fas fa-user-tag"></i>
           <span>Data Mahasiswa</span></a>
     </li>
     <li class="nav-item @if(Route::is('data-alumni.*')) active @endif">
         <a class="nav-link" href="{{ route('data-alumni.index') }}">
-          <i class="fas fa-database"></i>
+          <i class="fas fa-user-tie"></i>
           <span>Data Alumni</span></a>
     </li>
     <li class="nav-item @if(Route::is('data-yudisium.*')) active @endif">
         <a class="nav-link" href="{{ route('data-yudisium.index') }}">
-          <i class="fas fa-database"></i>
+          <i class="fas fa-address-card"></i>
           <span>Data Yudisium</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('data-pelatihan.*')) active @endif">
+        <a class="nav-link" href="{{ route('data-pelatihan.index') }}">
+            <i class="fas fa-child"></i>
+          <span>Data Pelatihan</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('data-kejuaraan.*')) active @endif">
+        <a class="nav-link" href="{{ route('data-kejuaraan.index') }}">
+            <i class="fas fa-running"></i>
+          <span>Data Kejuaraan</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('data-organisasi.*')) active @endif">
+        <a class="nav-link" href="{{ route('data-organisasi.index') }}">
+            <i class="fas fa-chalkboard-teacher"></i>
+          <span>Data Organisasi</span></a>
+    </li>
+    <li class="nav-item @if(Route::is('data-berita.*')) active @endif">
+        <a class="nav-link" href="{{ route('data-berita.index') }}">
+          <i class="fas fa-newspaper"></i>
+          <span>Berita</span></a>
     </li>
     @endif
 

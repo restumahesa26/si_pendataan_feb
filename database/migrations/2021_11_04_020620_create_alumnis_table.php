@@ -20,12 +20,18 @@ class CreateAlumnisTable extends Migration
             $table->string('npm')->nullable();
             $table->string('prodi')->nullable();
             $table->string('angkatan')->nullable();
+            $table->date('tanggal_masuk')->nullable();
             $table->date('tanggal_lulus')->nullable();
-            $table->integer('lama_studi')->nullable();
             $table->float('ipk', 3,2)->nullable();
-            $table->string('status_bekerja')->nullable();
-            $table->string('tempat_bekerja')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('tempat_pekerjaan')->nullable();
             $table->string('pendidikan_terakhir')->nullable();
+            $table->string('riwayat_pendidikan_sd')->nullable();
+            $table->string('riwayat_pendidikan_smp')->nullable();
+            $table->string('riwayat_pendidikan_sma')->nullable();
+            $table->string('file_riwayat_pendidikan_sd')->nullable();
+            $table->string('file_riwayat_pendidikan_smp')->nullable();
+            $table->string('file_riwayat_pendidikan_sma')->nullable();
             $table->timestamps();
         });
     }

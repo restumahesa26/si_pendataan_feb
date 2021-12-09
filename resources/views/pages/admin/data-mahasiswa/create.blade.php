@@ -5,13 +5,13 @@
     <h1 class="h3 mb-0 text-gray-800">Data Mahasiswa</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="./">Data Mahasiswa</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('data-mahasiswa.index') }}">Data Mahasiswa</a></li>
         <li class="breadcrumb-item active" aria-current="page">Tambah Data</li>
     </ol>
 </div>
 <div class="card mb-5">
     <div class="card-body">
-        <form action="{{ route('data-mahasiswa.store') }}" method="POST">
+        <form action="{{ route('data-mahasiswa.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="nama">Nama</label>
@@ -89,8 +89,71 @@
                 </span>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="riwayat_pendidikan_sd">Riwayat Pendidikan SD</label>
+                <input type="text" class="form-control @error('riwayat_pendidikan_sd') is-invalid @enderror" id="riwayat_pendidikan_sd" name="riwayat_pendidikan_sd" placeholder="Masukkan Riwayat Pendidikan SD" value="{{ old('riwayat_pendidikan_sd') }}">
+                @error('riwayat_pendidikan_sd')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="file_riwayat_pendidikan_sd">File Riwayat Pendidikan SD</label>
+                <input type="file" class="form-control @error('file_riwayat_pendidikan_sd') is-invalid @enderror" id="file_riwayat_pendidikan_sd" name="file_riwayat_pendidikan_sd" placeholder="Masukkan File Riwayat Pendidikan SD" value="{{ old('file_riwayat_pendidikan_sd') }}">
+                @error('file_riwayat_pendidikan_sd')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="riwayat_pendidikan_smp">Riwayat Pendidikan SMP</label>
+                <input type="text" class="form-control @error('riwayat_pendidikan_smp') is-invalid @enderror" id="riwayat_pendidikan_smp" name="riwayat_pendidikan_smp" placeholder="Masukkan Riwayat Pendidikan SMP" value="{{ old('riwayat_pendidikan_smp') }}">
+                @error('riwayat_pendidikan_smp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="file_riwayat_pendidikan_smp">File Riwayat Pendidikan SMP</label>
+                <input type="file" class="form-control @error('file_riwayat_pendidikan_smp') is-invalid @enderror" id="file_riwayat_pendidikan_smp" name="file_riwayat_pendidikan_smp" placeholder="Masukkan File Riwayat Pendidikan SMP" value="{{ old('file_riwayat_pendidikan_smp') }}">
+                @error('file_riwayat_pendidikan_smp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="riwayat_pendidikan_sma">Riwayat Pendidikan SMA</label>
+                <input type="text" class="form-control @error('riwayat_pendidikan_sma') is-invalid @enderror" id="riwayat_pendidikan_sma" name="riwayat_pendidikan_sma" placeholder="Masukkan Riwayat Pendidikan SMA" value="{{ old('riwayat_pendidikan_sma') }}">
+                @error('riwayat_pendidikan_sma')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="file_riwayat_pendidikan_sma">File Riwayat Pendidikan SMA</label>
+                <input type="file" class="form-control @error('file_riwayat_pendidikan_sma') is-invalid @enderror" id="file_riwayat_pendidikan_sma" name="file_riwayat_pendidikan_sma" placeholder="Masukkan File Riwayat Pendidikan SMA" value="{{ old('file_riwayat_pendidikan_sma') }}">
+                @error('file_riwayat_pendidikan_sma')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="scan_ktp">Scan KTP / SIM</label>
+                <input type="file" class="form-control @error('scan_ktp') is-invalid @enderror" id="scan_ktp" name="scan_ktp" placeholder="Masukkan Scan KTP / SIM" value="{{ old('scan_ktp') }}">
+                @error('scan_ktp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
             <hr>
-            <button type="submit" class="btn btn-primary btn-block my-3">Simpan</button>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Simpan</button>
         </form>
     </div>
 </div>

@@ -58,6 +58,10 @@
             <input type="text" class="form-control " id="umur" name="umur" placeholder="Masukkan Umur" value="{{ $item->umur }}" readonly>
         </div>
         <div class="form-group">
+            <label for="ipk">IPK </label>
+            <input type="text" class="form-control " id="ipk" name="ipk" placeholder="Masukkan IPK" value="{{ $item->ipk }}" readonly>
+        </div>
+        <div class="form-group">
             <label for="pas_photo">Pas Photo <span class="text-danger">*<sup>(Ukuran 3 x 4)</sup></span></label>
             <img src="{{ asset('storage/assets/pas_photo/' . $item->pas_photo) }}" alt="" style="width: 150px;">
         </div>
@@ -166,6 +170,15 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="ipk">IPK</label>
+                <input type="text" class="form-control @error('ipk') is-invalid @enderror" id="ipk" name="ipk" placeholder="Masukkan IPK" value="{{ old('ipk') }}" required>
+                @error('ipk')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="pas_photo">Pas Photo <span class="text-danger">*<sup>(Ukuran 3 x 4)</sup></span></label>
                 <input type="file" class="form-control @error('pas_photo') is-invalid @enderror" id="pas_photo" name="pas_photo" required>
                 @error('pas_photo')
@@ -175,9 +188,37 @@
                 @enderror
             </div>
             <hr>
-            <button type="submit" class="btn btn-primary btn-block my-3">Simpan</button>
+            <button type="submit" class="btn btn-primary btn-block my-3 btn-simpan">Simpan</button>
         </form>
         @endif
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    <script>
+        $('.btn-simpan').on('click', function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form;
+            Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            text: "Data Akan Terhapus Permanen",
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }else {
+                    //
+                }
+            });
+        });
+    </script>
+@endpush

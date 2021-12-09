@@ -20,6 +20,13 @@ class CreateMahasiswasTable extends Migration
             $table->string('npm')->nullable();
             $table->string('prodi')->nullable();
             $table->string('angkatan')->nullable();
+            $table->string('riwayat_pendidikan_sd')->nullable();
+            $table->string('riwayat_pendidikan_smp')->nullable();
+            $table->string('riwayat_pendidikan_sma')->nullable();
+            $table->string('file_riwayat_pendidikan_sd')->nullable();
+            $table->string('file_riwayat_pendidikan_smp')->nullable();
+            $table->string('file_riwayat_pendidikan_sma')->nullable();
+            $table->string('scan_ktp')->nullable();
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mahasiswa }}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-primary"></i>
+                        <i class="fas fa-user-tag fa-2x text-primary"></i>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,37 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $alumni }}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                        <i class="fas fa-user-tie fa-2x text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-uppercase mb-1">Data Yudisium Terbaru</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $yudisium }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-address-card fa-2x text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-uppercase mb-1">Data Berita</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $berita }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-newspaper fa-2x text-warning"></i>
                     </div>
                 </div>
             </div>
@@ -55,3 +85,19 @@
 @endif
 
 @endsection
+
+@push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    @if ($message = Session::get('success-login'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil Login',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
+@endpush
+
+

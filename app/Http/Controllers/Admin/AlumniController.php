@@ -7,6 +7,7 @@ use App\Models\Alumni;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 
 class AlumniController extends Controller
@@ -52,12 +53,34 @@ class AlumniController extends Controller
             'email' => 'required|email|string|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'tanggal_lulus' => 'required|date',
-            'lama_studi' => 'required|numeric',
+            'tanggal_masuk' => 'required|date',
             'ipk' => 'required',
-            'status_bekerja' => 'required|string|max:255',
-            'tempat_bekerja' => 'required|string|max:255',
-            'pendidikan_terakhir' => 'required|string|max:255',
+            'pekerjaan' => 'required|string|max:255',
+            'riwayat_pendidikan_sd' => 'required|string|max:255',
+            'riwayat_pendidikan_smp' => 'required|string|max:255',
+            'riwayat_pendidikan_sma' => 'required|string|max:255',
         ]);
+
+        if ($request->file_riwayat_pendidikan_sd) {
+            $value = $request->file('file_riwayat_pendidikan_sd');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/file-riwayat-pendidikan-sd', $value, $imageNames);
+        }
+
+        if ($request->file_riwayat_pendidikan_smp) {
+            $value2 = $request->file('file_riwayat_pendidikan_smp');
+            $extension2 = $value2->extension();
+            $imageNames2 = uniqid('img_', microtime()) . '.' . $extension2;
+            Storage::putFileAs('public/assets/file-riwayat-pendidikan-smp', $value2, $imageNames2);
+        }
+
+        if ($request->file_riwayat_pendidikan_sma) {
+            $value3 = $request->file('file_riwayat_pendidikan_sma');
+            $extension3 = $value3->extension();
+            $imageNames3 = uniqid('img_', microtime()) . '.' . $extension3;
+            Storage::putFileAs('public/assets/file-riwayat-pendidikan-sma', $value3, $imageNames3);
+        }
 
         $user = User::create([
             'nama' => $request->nama,
@@ -72,15 +95,18 @@ class AlumniController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'prodi' => $request->prodi,
             'angkatan' => $request->angkatan,
-            'tanggal_lulus' => $request->tanggal_lulus,
-            'lama_studi' => $request->lama_studi,
             'ipk' => $request->ipk,
-            'status_bekerja' => $request->status_bekerja,
-            'tempat_bekerja' => $request->tempat_bekerja,
-            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'pekerjaan' => $request->pekerjaan,
+            'tempat_pekerjaan' => $request->tempat_pekerjaan,
+            'riwayat_pendidikan_sd' => $request->riwayat_pendidikan_sd,
+            'riwayat_pendidikan_smp' => $request->riwayat_pendidikan_smp,
+            'riwayat_pendidikan_sma' => $request->riwayat_pendidikan_sma,
+            'file_riwayat_pendidikan_sd' => $imageNames,
+            'file_riwayat_pendidikan_smp' => $imageNames2,
+            'file_riwayat_pendidikan_sma' => $imageNames3,
         ]);
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Sukses Menambah Data Alumni']);
     }
 
     /**
@@ -125,14 +151,42 @@ class AlumniController extends Controller
             'prodi' => 'required|string|max:255',
             'angkatan' => 'required|string|max:255',
             'tanggal_lulus' => 'required|date',
-            'lama_studi' => 'required|numeric',
+            'tanggal_masuk' => 'required|date',
             'ipk' => 'required',
-            'status_bekerja' => 'required|string|max:255',
-            'tempat_bekerja' => 'required|string|max:255',
-            'pendidikan_terakhir' => 'required|string|max:255',
+            'pekerjaan' => 'required|string|max:255',
+            'riwayat_pendidikan_sd' => 'required|string|max:255',
+            'riwayat_pendidikan_smp' => 'required|string|max:255',
+            'riwayat_pendidikan_sma' => 'required|string|max:255',
         ]);
 
         $item = Alumni::findOrFail($id);
+
+        if ($request->file_riwayat_pendidikan_sd) {
+            $value = $request->file('file_riwayat_pendidikan_sd');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/file-riwayat-pendidikan-sd', $value, $imageNames);
+        }else {
+            $imageNames = $item->file_riwayat_pendidikan_sd;
+        }
+
+        if ($request->file_riwayat_pendidikan_smp) {
+            $value2 = $request->file('file_riwayat_pendidikan_smp');
+            $extension2 = $value2->extension();
+            $imageNames2 = uniqid('img_', microtime()) . '.' . $extension2;
+            Storage::putFileAs('public/assets/file-riwayat-pendidikan-smp', $value2, $imageNames2);
+        }else {
+            $imageNames2 = $item->file_riwayat_pendidikan_smp;
+        }
+
+        if ($request->file_riwayat_pendidikan_sma) {
+            $value3 = $request->file('file_riwayat_pendidikan_sma');
+            $extension3 = $value3->extension();
+            $imageNames3 = uniqid('img_', microtime()) . '.' . $extension3;
+            Storage::putFileAs('public/assets/file-riwayat-pendidikan-sma', $value3, $imageNames3);
+        }else {
+            $imageNames3 = $item->file_riwayat_pendidikan_sma;
+        }
 
         if ($item->user->email != $request->email) {
             $request->validate([
@@ -155,15 +209,20 @@ class AlumniController extends Controller
         $item->jenis_kelamin = $request->jenis_kelamin;
         $item->prodi = $request->prodi;
         $item->angkatan = $request->angkatan;
-        $item->tanggal_lulus = $request->tanggal_lulus;
-        $item->lama_studi = $request->lama_studi;
         $item->ipk = $request->ipk;
-        $item->status_bekerja = $request->status_bekerja;
-        $item->tempat_bekerja = $request->tempat_bekerja;
-        $item->pendidikan_terakhir = $request->pendidikan_terakhir;
+        $item->pekerjaan = $request->pekerjaan;
+        $item->tempat_pekerjaan = $request->tempat_pekerjaan;
+        $item->tanggal_masuk = $request->tanggal_masuk;
+        $item->tanggal_lulus = $request->tanggal_lulus;
+        $item->riwayat_pendidikan_sd = $request->riwayat_pendidikan_sd;
+        $item->riwayat_pendidikan_smp = $request->riwayat_pendidikan_smp;
+        $item->riwayat_pendidikan_sma = $request->riwayat_pendidikan_sma;
+        $item->file_riwayat_pendidikan_sd = $imageNames;
+        $item->file_riwayat_pendidikan_smp = $imageNames2;
+        $item->file_riwayat_pendidikan_sma = $imageNames3;
         $item->save();
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Sukses Mengubah Data Alumni']);
     }
 
     /**
@@ -181,6 +240,6 @@ class AlumniController extends Controller
         $item->delete();
         $item2->user->delete();
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Sukses Menghapus Data Alumni']);
     }
 }
