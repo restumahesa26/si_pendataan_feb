@@ -66,6 +66,8 @@ class AlumniController extends Controller
             $extension = $value->extension();
             $imageNames = uniqid('img_', microtime()) . '.' . $extension;
             Storage::putFileAs('public/assets/file-riwayat-pendidikan-sd', $value, $imageNames);
+        }else {
+            $imageNames = NULL;
         }
 
         if ($request->file_riwayat_pendidikan_smp) {
@@ -73,6 +75,8 @@ class AlumniController extends Controller
             $extension2 = $value2->extension();
             $imageNames2 = uniqid('img_', microtime()) . '.' . $extension2;
             Storage::putFileAs('public/assets/file-riwayat-pendidikan-smp', $value2, $imageNames2);
+        }else {
+            $imageNames2 = NULL;
         }
 
         if ($request->file_riwayat_pendidikan_sma) {
@@ -80,6 +84,8 @@ class AlumniController extends Controller
             $extension3 = $value3->extension();
             $imageNames3 = uniqid('img_', microtime()) . '.' . $extension3;
             Storage::putFileAs('public/assets/file-riwayat-pendidikan-sma', $value3, $imageNames3);
+        }else {
+            $imageNames3 = NULL;
         }
 
         $user = User::create([

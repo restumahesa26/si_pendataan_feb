@@ -63,6 +63,8 @@ class MahasiswaController extends Controller
             $extension = $value->extension();
             $imageNames = uniqid('img_', microtime()) . '.' . $extension;
             Storage::putFileAs('public/assets/file-riwayat-pendidikan-sd', $value, $imageNames);
+        }else{
+            $imageNames = NULL;
         }
 
         if ($request->file('file_riwayat_pendidikan_smp')) {
@@ -70,6 +72,8 @@ class MahasiswaController extends Controller
             $extension2 = $value2->extension();
             $imageNames2 = uniqid('img_', microtime()) . '.' . $extension2;
             Storage::putFileAs('public/assets/file-riwayat-pendidikan-smp', $value2, $imageNames2);
+        }else{
+            $imageNames2 = NULL;
         }
 
         if ($request->file('file_riwayat_pendidikan_sma')) {
@@ -77,6 +81,8 @@ class MahasiswaController extends Controller
             $extension3 = $value3->extension();
             $imageNames3 = uniqid('img_', microtime()) . '.' . $extension3;
             Storage::putFileAs('public/assets/file-riwayat-pendidikan-sma', $value3, $imageNames3);
+        }else{
+            $imageNames3 = NULL;
         }
 
         if ($request->file('scan_ktp')) {
@@ -84,6 +90,8 @@ class MahasiswaController extends Controller
             $extension4 = $value4->extension();
             $imageNames4 = uniqid('img_', microtime()) . '.' . $extension4;
             Storage::putFileAs('public/assets/scan-ktp', $value4, $imageNames4);
+        }else{
+            $imageNames4 = NULL;
         }
 
         $user = User::create([
