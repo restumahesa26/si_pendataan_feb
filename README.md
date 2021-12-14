@@ -15,6 +15,7 @@
     <li>Jalankan Perintah <i>php artisan key:generate</i> melalui cmd tadi</li>
     <li>Jalankan Perintah <i>php artisan serve</i> melalui cmd tadi</li>
     <li>Buka Linknya Menggunakan Browser Kesukaan Anda</li>
+    <li>Login Menggunakan email ( admin@gmail.com) dan password ( password )</li>
     <li>Voila.. :) :) :)</li>
 </ol>
 <hr>
