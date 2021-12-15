@@ -30,7 +30,7 @@
                             <td>{{ $item->user->nama }}</td>
                             <td>{{ $item->tanggal_lulus }}</td>
                             <td>{{ $item->ipk }}</td>
-                            <td>{{ $item->tempat_pekerjaan }}</td>
+                            <td>{{ $item->pekerjaan }}</td>
                             <td>
                                 <a href="{{ route('data-alumni.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <form action="{{ route('data-alumni.destroy', $item->id) }}" class="d-inline" method="POST">

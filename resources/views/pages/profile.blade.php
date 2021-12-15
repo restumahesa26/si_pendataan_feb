@@ -237,6 +237,7 @@
     </div>
 </div>
 
+@if (Auth::user()->role != 'ADMIN')
 <div class="card mb-5">
     <div class="card-body d-flex justify-content-center">
         <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#ijazahSD">
@@ -341,6 +342,7 @@
     </div>
     @endif
 </div>
+@endif
 @endsection
 
 @push('addon-script')

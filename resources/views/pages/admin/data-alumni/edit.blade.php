@@ -144,8 +144,8 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="tempat_pekerjaan">Pekerjaan</label>
-                <input type="text" class="form-control @error('tempat_pekerjaan') is-invalid @enderror" id="tempat_pekerjaan" name="tempat_pekerjaan" placeholder="Masukkan Pekerjaan" value="{{ $item->tempat_pekerjaan }}">
+                <label for="tempat_pekerjaan">Tempat Pekerjaan</label>
+                <input type="text" class="form-control @error('tempat_pekerjaan') is-invalid @enderror" id="tempat_pekerjaan" name="tempat_pekerjaan" placeholder="Masukkan Tempat Pekerjaan" value="{{ $item->tempat_pekerjaan }}">
                 @error('tempat_pekerjaan')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
