@@ -79,7 +79,7 @@
 @if (Auth::user()->role === 'MAHASISWA' || Auth::user()->role === 'ALUMNI')
 <div class="card">
     <div class="card-body">
-        <h3>Selamat Datang di Sistem Informasi Manajemen FEB, {{ Auth::user()->nama }}</h3>
+        <h3>Selamat Datang di Sistem Informasi Pendataan FEB, {{ Auth::user()->nama }}</h3>
     </div>
 </div>
 @endif
