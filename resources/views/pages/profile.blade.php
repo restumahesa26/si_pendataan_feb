@@ -184,9 +184,18 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="tempat_pekerjaan">Pekerjaan</label>
-                <input type="text" class="form-control @error('tempat_pekerjaan') is-invalid @enderror" id="tempat_pekerjaan" name="tempat_pekerjaan" placeholder="Masukkan Pekerjaan" value="{{ $item->tempat_pekerjaan }}">
+                <label for="tempat_pekerjaan">Instansi / Perusahaan Tempat Bekerja</label>
+                <input type="text" class="form-control @error('tempat_pekerjaan') is-invalid @enderror" id="tempat_pekerjaan" name="tempat_pekerjaan" placeholder="Masukkan Instansi / Perusahaan Tempat Bekerja" value="{{ $item->tempat_pekerjaan }}">
                 @error('tempat_pekerjaan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="tanggal_mulai_bekerja">Tanggal Mulai Bekerja / Usaha</label>
+                <input type="date" class="form-control @error('tanggal_mulai_bekerja') is-invalid @enderror" id="tanggal_mulai_bekerja" name="tanggal_mulai_bekerja" placeholder="Masukkan Tanggal Mulai Bekerja / Usaha" value="{{ $item->tanggal_mulai_bekerja }}">
+                @error('tanggal_mulai_bekerja')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

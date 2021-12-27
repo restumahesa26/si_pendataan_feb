@@ -35,6 +35,7 @@
                                 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#gambarModal{{ $item->id }}">
                                     Lihat Sertifikat
                                 </button>
+                                <a href="{{ route('kejuaraan.download', $item->file_sertifikat) }}" class="btn btn-sm btn-primary">Download Sertifikat</a>
                                 <form action="{{ route('data-kejuaraan.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')

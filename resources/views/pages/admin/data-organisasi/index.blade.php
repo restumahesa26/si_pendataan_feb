@@ -34,6 +34,7 @@
                                 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#gambarModal{{ $item->id }}">
                                     Lihat Sertifikat
                                 </button>
+                                <a href="{{ route('organisasi.download', $item->file_sertifikat) }}" class="btn btn-sm btn-primary">Download Sertifikat</a>
                                 @else
 
                                 @endif

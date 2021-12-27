@@ -55,11 +55,25 @@ Route::middleware(['mahasiswa','auth'])
 Route::middleware(['admin','auth'])
 ->group(function() {
     Route::get('/data-mahasiswa/{id}/pindah_ke_alumni', [MahasiswaController::class, 'to_alumni'])->name('data-mahasiswa.to-alumni');
+
     Route::resource('data-mahasiswa', MahasiswaController::class);
+
     Route::resource('data-berita', BeritaController::class);
+
+    Route::get('/data-alumni/cetak-excel', [AlumniController::class, 'export_excel'])->name('data-alumni.cetak-excel');
+
     Route::resource('data-alumni', AlumniController::class);
+
     Route::get('/data-yudisium', [AdminYudisiumController::class, 'index'])->name('data-yudisium.index');
+
     Route::get('/data-yudisium/{id}/pindah_ke_alumni', [AdminYudisiumController::class, 'to_alumni'])->name('data-yudisium.to-alumni');
+
+    Route::get('/pelatihan/download-{filename}', [PelatihanController::class, 'download'])->name('pelatihan.download');
+
+    Route::get('/kejuaraan/download-{filename}', [KejuaraanController::class, 'download'])->name('kejuaraan.download');
+
+    Route::get('/organisasi/download-{filename}', [OrganisasiController::class, 'download'])->name('organisasi.download');
+
     Route::get('/data-pelatihan', [PrestasiController::class, 'pelatihan_index'])->name('data-pelatihan.index');
     Route::get('/data-kejuaraan', [PrestasiController::class, 'kejuaraan_index'])->name('data-kejuaraan.index');
     Route::get('/data-organisasi', [PrestasiController::class, 'organisasi_index'])->name('data-organisasi.index');
@@ -71,7 +85,9 @@ Route::middleware(['admin','auth'])
     Route::delete('/data-organisasi/destroy/{id}', [PrestasiController::class, 'organisasi_destroy'])->name('data-organisasi.destroy');
 
     Route::get('/data-pelatihan/cetak', [PrestasiController::class, 'pelatihan_cetak'])->name('data-pelatihan.cetak');
+
     Route::get('/data-kejuaraan/cetak', [PrestasiController::class, 'kejuaraan_cetak'])->name('data-kejuaraan.cetak');
+
     Route::get('/data-organisasi/cetak', [PrestasiController::class, 'organisasi_cetak'])->name('data-organisasi.cetak');
 
     Route::get('/data-yudisium/cetak-excel', [AdminYudisiumController::class, 'export_excel'])->name('data-yudisium.cetak-excel');

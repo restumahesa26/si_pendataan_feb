@@ -10,7 +10,7 @@ class Alumni extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'npm', 'prodi', 'angkatan', 'jenis_kelamin', 'tanggal_lulus', 'tanggal_masuk', 'ipk', 'pekerjaan', 'tempat_pekerjaan', 'riwayat_pendidikan_sd', 'riwayat_pendidikan_smp', 'riwayat_pendidikan_sma', 'file_riwayat_pendidikan_sd', 'file_riwayat_pendidikan_smp', 'file_riwayat_pendidikan_sma'
+        'user_id', 'npm', 'prodi', 'angkatan', 'jenis_kelamin', 'tanggal_lulus', 'tanggal_masuk', 'ipk', 'pekerjaan', 'tempat_pekerjaan', 'tanggal_mulai_bekerja', 'riwayat_pendidikan_sd', 'riwayat_pendidikan_smp', 'riwayat_pendidikan_sma', 'file_riwayat_pendidikan_sd', 'file_riwayat_pendidikan_smp', 'file_riwayat_pendidikan_sma'
     ];
 
     public function user()

@@ -104,7 +104,6 @@ class ProfileControler extends Controller
             $request->validate([
                 'nama' => 'required|string|max:255',
                 'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-                'npm' => 'required|string|max:255',
                 'prodi' => 'required|string|max:255',
                 'angkatan' => 'required|string|max:255',
                 'tanggal_lulus' => 'required|date',
@@ -153,6 +152,7 @@ class ProfileControler extends Controller
                 'ipk' => $request->ipk,
                 'pekerjaan' => $request->pekerjaan,
                 'tempat_pekerjaan' => $request->tempat_pekerjaan,
+                'tanggal_mulai_bekerja' => $request->tanggal_mulai_bekerja,
                 'riwayat_pendidikan_sd' => $request->riwayat_pendidikan_sd,
                 'riwayat_pendidikan_smp' => $request->riwayat_pendidikan_smp,
                 'riwayat_pendidikan_sma' => $request->riwayat_pendidikan_sma,

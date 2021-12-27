@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Kejuaraan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response as FacadesResponse;
 use Illuminate\Support\Facades\Storage;
+use Response;
 
 class KejuaraanController extends Controller
 {
@@ -141,5 +143,11 @@ class KejuaraanController extends Controller
         $item->delete();
 
         return redirect()->route('kejuaraan.index');
+    }
+
+    public function download($filename)
+    {
+        $file_path = public_path('storage/assets/file-sertifikat-kejuaraan/' . $filename);
+        return response()->download($file_path);
     }
 }

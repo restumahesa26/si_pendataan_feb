@@ -11,6 +11,7 @@
 <div class="card mb-5">
     <div class="card-body">
         <a href="{{ route('data-alumni.create') }}" class="btn btn-sm px-4 btn-primary mb-3">Tambah Data Alumni</a>
+        <a href="{{ route('data-alumni.cetak-excel') }}" class="btn btn-sm px-4 btn-info mb-3" target="_blank">Cetak Laporan</a>
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered">
                 <thead>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\AlumniExport;
 use App\Http\Controllers\Controller;
 use App\Models\Alumni;
 use App\Models\User;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AlumniController extends Controller
 {
@@ -104,6 +106,7 @@ class AlumniController extends Controller
             'ipk' => $request->ipk,
             'pekerjaan' => $request->pekerjaan,
             'tempat_pekerjaan' => $request->tempat_pekerjaan,
+            'tanggal_mulai_bekerja' => $request->tanggal_mulai_bekerja,
             'riwayat_pendidikan_sd' => $request->riwayat_pendidikan_sd,
             'riwayat_pendidikan_smp' => $request->riwayat_pendidikan_smp,
             'riwayat_pendidikan_sma' => $request->riwayat_pendidikan_sma,
@@ -218,6 +221,7 @@ class AlumniController extends Controller
         $item->ipk = $request->ipk;
         $item->pekerjaan = $request->pekerjaan;
         $item->tempat_pekerjaan = $request->tempat_pekerjaan;
+        $item->tanggal_mulai_bekerja = $request->tanggal_mulai_bekerja;
         $item->tanggal_masuk = $request->tanggal_masuk;
         $item->tanggal_lulus = $request->tanggal_lulus;
         $item->riwayat_pendidikan_sd = $request->riwayat_pendidikan_sd;
@@ -247,5 +251,10 @@ class AlumniController extends Controller
         $item2->user->delete();
 
         return redirect()->route('data-alumni.index')->with(['success' => 'Sukses Menghapus Data Alumni']);
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new AlumniExport, 'alumni.xlsx');
     }
 }

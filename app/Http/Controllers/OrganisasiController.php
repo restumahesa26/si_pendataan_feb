@@ -141,4 +141,10 @@ class OrganisasiController extends Controller
 
         return redirect()->route('organisasi.index');
     }
+
+    public function download($filename)
+    {
+        $file_path = public_path('storage/assets/file-sertifikat-organisasi/' . $filename);
+        return response()->download($file_path);
+    }
 }
