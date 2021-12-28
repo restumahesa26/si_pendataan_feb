@@ -36,7 +36,7 @@ class ProfileControler extends Controller
             $request->validate([
                 'nama' => 'required|string|max:255',
                 'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-                'npm' => 'required|string|max:255',
+                'npm' => 'required|string|max:9',
                 'prodi' => 'required|string|max:255',
                 'angkatan' => 'required|string|max:255',
                 'riwayat_pendidikan_sd' => 'required|string|max:255',

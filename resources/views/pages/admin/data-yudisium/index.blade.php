@@ -120,8 +120,8 @@
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Hapus',
             cancelButtonText: 'Batal'
             }).then((result) => {
@@ -142,8 +142,8 @@
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Hapus',
             cancelButtonText: 'Batal'
             }).then((result) => {
@@ -163,9 +163,9 @@
                 text: "Data Akan Terhapus Permanen",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Konfirmasi',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -182,7 +182,7 @@
             Swal.fire({
                 title: 'Yakin Memindah Data Sebagai Alumni?',
                 text: "Data Akan Tersimpan",
-                icon: 'warning',
+                icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',

@@ -107,7 +107,7 @@
                                 <form action="{{ route('pelatihan.destroy', $pelatihan->id) }}" class="d-inline" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger btn-hapus">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -213,3 +213,31 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    <script>
+        $('.btn-hapus').on('click', function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form;
+            Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            text: "Data Akan Terhapus Permanen",
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }else {
+                    //
+                }
+            });
+        });
+    </script>
+@endpush

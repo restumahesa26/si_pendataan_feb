@@ -203,14 +203,14 @@
             e.preventDefault(); // prevent form submit
             var form = event.target.form;
             Swal.fire({
-            title: 'Yakin Menghapus Data?',
-            text: "Data Akan Terhapus Permanen",
+            title: 'Yakin Menyimpan Data?',
+            text: "Data Akan Tersimpan",
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Hapus',
+            confirmButtonText: 'Simpan',
             cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
