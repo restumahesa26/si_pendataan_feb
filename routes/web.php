@@ -39,6 +39,12 @@ Route::middleware(['auth'])
 
     Route::put('/profile/update', [ProfileControler::class, 'update'])->name('profile.update');
 
+    Route::get('/pelatihan/download-{filename}', [PelatihanController::class, 'download'])->name('pelatihan.download');
+
+    Route::get('/kejuaraan/download-{filename}', [KejuaraanController::class, 'download'])->name('kejuaraan.download');
+
+    Route::get('/organisasi/download-{filename}', [OrganisasiController::class, 'download'])->name('organisasi.download');
+
     Route::resource('pelatihan', PelatihanController::class);
 
     Route::resource('kejuaraan', KejuaraanController::class);
@@ -67,12 +73,6 @@ Route::middleware(['admin','auth'])
     Route::get('/data-yudisium', [AdminYudisiumController::class, 'index'])->name('data-yudisium.index');
 
     Route::get('/data-yudisium/{id}/pindah_ke_alumni', [AdminYudisiumController::class, 'to_alumni'])->name('data-yudisium.to-alumni');
-
-    Route::get('/pelatihan/download-{filename}', [PelatihanController::class, 'download'])->name('pelatihan.download');
-
-    Route::get('/kejuaraan/download-{filename}', [KejuaraanController::class, 'download'])->name('kejuaraan.download');
-
-    Route::get('/organisasi/download-{filename}', [OrganisasiController::class, 'download'])->name('organisasi.download');
 
     Route::get('/data-pelatihan', [PrestasiController::class, 'pelatihan_index'])->name('data-pelatihan.index');
     Route::get('/data-kejuaraan', [PrestasiController::class, 'kejuaraan_index'])->name('data-kejuaraan.index');

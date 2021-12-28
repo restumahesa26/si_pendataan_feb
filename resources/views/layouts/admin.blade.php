@@ -64,7 +64,7 @@
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; <script> document.write(new Date().getFullYear()); </script> - Developed by
-              <b>Andrei Jonior Gustari</b>
+              <b>Informatika UNIB</b>
             </span>
           </div>
         </div>
