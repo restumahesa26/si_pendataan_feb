@@ -33,6 +33,9 @@
                             <td>{{ $item->prodi }}</td>
                             <td>{{ $item->masa_studi }}</td>
                             <td>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal{{ $item->id }}">
+                                    Lihat
+                                </button>
                                 <a href="{{ route('data-yudisium.to-alumni', $item->id) }}" class="btn btn-sm btn-primary btn-verifikasi">Verifikasi Sebagai Alumni</a>
                                 <form action="{{ route('data-yudisium.destroy', $item->id) }}" class="d-inline" method="POST">
                                     @csrf
@@ -41,6 +44,74 @@
                                 </form>
                             </td>
                         </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Detail Data Yudisium</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-4">Nama</div>
+                                            <div class="col-8">: {{ $item->nama }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">NPM</div>
+                                            <div class="col-8">: {{ $item->npm }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Prodi</div>
+                                            <div class="col-8">: {{ $item->prodi }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Tempat Lahir</div>
+                                            <div class="col-8">: {{ $item->tempat_lahir }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Tanggal Lahir</div>
+                                            <div class="col-8">: {{ $item->tanggal_lahir }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Alamat</div>
+                                            <div class="col-8">: {{ $item->alamat }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">No. HP</div>
+                                            <div class="col-8">: {{ $item->no_hp }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Nama Ayah</div>
+                                            <div class="col-8">: {{ $item->nama_ayah }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Nama Ibu</div>
+                                            <div class="col-8">: {{ $item->nama_ibu }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Masa Studi</div>
+                                            <div class="col-8">: {{ $item->masa_studi }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Umur</div>
+                                            <div class="col-8">: {{ $item->umur }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">IPK</div>
+                                            <div class="col-8">: {{ $item->ipk }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">Foto</div>
+                                            <div class="col-8">: <img src="{{ asset('storage/assets/pas_photo/' . $item->pas_photo) }}" alt="" width="100"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @empty
                         <tr class="text-center">
                             <td colspan="7">-- Data Kosong --</td>
